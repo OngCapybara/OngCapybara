@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OngCapybara</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="src/styles/styles.css">
+</head>
+<body class="bg-black text-gray-200 font-sans">
+  <nav>
+    <a href="index.html" class="hover:text-cyan-400">About Me</a>
+    <a href="project.html" class="hover:text-cyan-400">Projects</a>
+    <a href="journey.html" class="hover:text-cyan-400">Journey</a>
+    <a href="blog.html" class="hover:text-cyan-400">Blog</a>
+    <a href="contact.html" class="hover:text-cyan-400">Contact</a>
+  </nav>  
+
+  <header class="text-center p-8 border-b-2 border-cyan-400">
+    <h1 class="text-3xl font-bold">My Projects</h1>
+    <p class="text-cyan-400">Click a category or search to find projects</p>
+  </header>
+
+  <!-- FILTER / SEARCH -->
+  <main class="max-w-5xl mx-auto p-6">
+    <div class="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
+      <!-- Category Buttons -->
+      <div class="flex flex-wrap gap-2" id="categoryButtons">
+        <button class="category-btn px-4 py-2 bg-cyan-500 text-black rounded hover:bg-cyan-400 transition" data-category="all">All</button>
+        <button class="category-btn px-4 py-2 bg-gray-800 text-cyan-300 rounded hover:bg-gray-700 transition" data-category="python">Python</button>
+        <button class="category-btn px-4 py-2 bg-gray-800 text-cyan-300 rounded hover:bg-gray-700 transition" data-category="cpp">C++</button>
+        <button class="category-btn px-4 py-2 bg-gray-800 text-cyan-300 rounded hover:bg-gray-700 transition" data-category="web">Web</button>
+        <button class="category-btn px-4 py-2 bg-gray-800 text-cyan-300 rounded hover:bg-gray-700 transition" data-category="mobile-app">Mobile App</button>
+        <button class="category-btn px-4 py-2 bg-gray-800 text-cyan-300 rounded hover:bg-gray-700 transition" data-category="cyber">Cyber Security</button>
+      </div>
+
+      <!-- Search Box -->
+      <input type="text" id="searchBox" placeholder="Search projects..." 
+             class="p-2 rounded bg-gray-800 text-gray-200 w-full sm:w-64">
+    </div>
+
+    <!-- PROJECT GRID -->
+    <div id="projects" class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="project-item python cyber bg-gray-900 p-4 rounded shadow-md hover:shadow-cyan-400/50 transition">
+        <h2 class="text-xl font-semibold text-cyan-400 mb-2">Port Scanner</h2>
+        <p class="text-gray-300 mb-2">A tool for testing ports such as Nmap</p>
+        <img src="assets/images/Port_Scanner.png" alt="Port Scanner" class="w-full rounded mb-2 transition transform hover:scale-105 hover:shadow-cyan-400/50">
+        <a href="https://github.com/DevilTanuki99/port_scanner" target="_blank" class="inline-block mt-2 px-4 py-2 bg-cyan-500 text-black rounded hover:bg-cyan-400 transition">See More</a>
+      </div>
+      <div class="project-item cpp bg-gray-900 p-4 rounded shadow-md hover:shadow-cyan-400/50 transition">
+        <h2 class="text-xl font-semibold text-cyan-400 mb-2">Uiiai Robo</h2>
+        <p class="text-gray-300 mb-2">Robots using Arduino microcontrollers, modules, motors, and servos</p>
+        <img src="assets/images/Uiiai_robo.png" alt="Uiiai Robo" class="w-full rounded mb-2 transition transform hover:scale-105 hover:shadow-cyan-400/50">
+        <a href="https://github.com/DevilTanuki99/Uiiai-Robo" target="_blank" class="inline-block mt-2 px-4 py-2 bg-cyan-500 text-black rounded hover:bg-cyan-400 transition">See More</a>
+      </div>
+      <div class="project-item python cyber bg-gray-900 p-4 rounded shadow-md hover:shadow-cyan-400/50 transition">
+        <h2 class="text-xl font-semibold text-cyan-400 mb-2">Base Family</h2>
+        <p class="text-gray-300 mb-2">Multi-purpose tools if you wanna use base encode-decode</p>
+        <img src="assets/images/base_family.png" alt="Bruteforce Tool" class="w-full rounded mb-2 transition transform hover:scale-105 hover:shadow-cyan-400/50">
+        <a href="https://github.com/DevilTanuki99/base-family" target="_blank" class="inline-block mt-2 px-4 py-2 bg-cyan-500 text-black rounded hover:bg-cyan-400 transition">See More</a>
+      </div>
+      <div class="project-item python bg-gray-900 p-4 rounded shadow-md hover:shadow-cyan-400/50 transition">
+        <h2 class="text-xl font-semibold text-cyan-400 mb-2">Face and Hand Detector</h2>
+        <p class="text-gray-300 mb-2">Face and hand detection with button automation feature</p>
+        <img src="assets/images/Face_and_hand_detector.png" alt="Face and Hand Detector" class="w-full rounded mb-2 transition transform hover:scale-105 hover:shadow-cyan-400/50">
+        <a href="https://github.com/DevilTanuki99/Face-and-hand-detector" target="_blank" class="inline-block mt-2 px-4 py-2 bg-cyan-500 text-black rounded hover:bg-cyan-400 transition">See More</a>
+      </div>
+      <div class="project-item mobile-app bg-gray-900 p-4 rounded shadow-md hover:shadow-cyan-400/50 transition">
+        <h2 class="text-xl font-semibold text-cyan-400 mb-2">Talkzone</h2>
+        <p class="text-gray-300 mb-2">I make that's app using flutter framework and dart programming language with firebase as databases</p>
+        <img src="assets/images/Talkzone.png" alt="Talkzone" class="w-full rounded mb-2 transition transform hover:scale-105 hover:shadow-cyan-400/50">
+        <a href="https://github.com/DevilTanuki99/TalkZone" target="_blank" class="inline-block mt-2 px-4 py-2 bg-cyan-500 text-black rounded hover:bg-cyan-400 transition">See More</a>
+      </div>
+      <div class="project-item python bg-gray-900 p-4 rounded shadow-md hover:shadow-cyan-400/50 transition">
+        <h2 class="text-xl font-semibold text-cyan-400 mb-2">Age Calculator</h2>
+        <p class="text-gray-300 mb-2">A calculator for prediction your age right now :D</p>
+        <img src="assets/images/age_calculate.png" alt="Age Calculator" class="w-full rounded mb-2 transition transform hover:scale-105 hover:shadow-cyan-400/50">
+        <a href="https://github.com/DevilTanuki99/Simple-App-To-Calculate-Age" target="_blank" class="inline-block mt-2 px-4 py-2 bg-cyan-500 text-black rounded hover:bg-cyan-400 transition">See More</a>
+      </div>
+      <div class="project-item web bg-gray-900 p-4 rounded shadow-md hover:shadow-cyan-400/50 transition">
+        <h2 class="text-xl font-semibold text-cyan-400 mb-2">Logical Gate Calculator</h2>
+        <p class="text-gray-300 mb-2">A calculator for ...</p>
+        <img src="assets/images/logical_gate_calculator.png" alt="Age Calculator" class="w-full rounded mb-2 transition transform hover:scale-105 hover:shadow-cyan-400/50">
+        <a href="https://github.com/DevilTanuki99/Kakulator-Gerbang-Logika" target="_blank" class="inline-block mt-2 px-4 py-2 bg-cyan-500 text-black rounded hover:bg-cyan-400 transition">See More</a>
+        <a href="https://deviltanuki99.github.io/Kakulator-Gerbang-Logika/index.html" target="_blank" class="inline-block mt-2 px-4 py-2 bg-cyan-500 text-black rounded hover:bg-cyan-400 transition">Visit site here</a>
+      </div>
+      <div class="project-item python bg-gray-900 p-4 rounded shadow-md hover:shadow-cyan-400/50 transition">
+        <h2 class="text-xl font-semibold text-cyan-400 mb-2">Displayer Lyrics</h2>
+        <p class="text-gray-300 mb-2">That's code contains all the function for displaying song lyrics as you wish</p>
+        <img src="assets/images/displayer_song.png" alt="Age Calculator" class="w-full rounded mb-2 transition transform hover:scale-105 hover:shadow-cyan-400/50">
+        <a href="https://github.com/DevilTanuki99/App-for-displaying-song-lyrics" target="_blank" class="inline-block mt-2 px-4 py-2 bg-cyan-500 text-black rounded hover:bg-cyan-400 transition">See More</a>
+      </div>
+      <div class="project-item web bg-gray-900 p-4 rounded shadow-md hover:shadow-cyan-400/50 transition">
+        <h2 class="text-xl font-semibold text-cyan-400 mb-2">Birthday Card</h2>
+        <p class="text-gray-300 mb-2">This is the website i gave to someone I admire >///<</p>
+        <img src="assets/images/birthday_card.png" alt="Age Calculator" class="w-full rounded mb-2 transition transform hover:scale-105 hover:shadow-cyan-400/50">
+        <a href="https://github.com/DevilTanuki99/Ultah_Yunia" target="_blank" class="inline-block mt-2 px-4 py-2 bg-cyan-500 text-black rounded hover:bg-cyan-400 transition">See More</a>
+        <a href="https://deviltanuki99.github.io/Ultah_Yunia/" target="_blank" class="inline-block mt-2 px-4 py-2 bg-cyan-500 text-black rounded hover:bg-cyan-400 transition">Visit site here</a>
+      </div>
+      <div class="project-item cpp bg-gray-900 p-4 rounded shadow-md hover:shadow-cyan-400/50 transition">
+        <h2 class="text-xl font-semibold text-cyan-400 mb-2">Automatic Trash Can</h2>
+        <p class="text-gray-300 mb-2">Trash robo using arduino uno, HC-SR04, servo, and any DIY items :D. Actually, im just wanna reduce trash in my room lol</p>
+        <img src="assets/images/Trash-Robo.jpg" alt="Uiiai Robo" class="w-full rounded mb-2 transition transform hover:scale-105 hover:shadow-cyan-400/50">
+        <a href="https://github.com/DevilTanuki99/automatic_trash_can_v1.0" target="_blank" class="inline-block mt-2 px-4 py-2 bg-cyan-500 text-black rounded hover:bg-cyan-400 transition">See More</a>
+        <a href="https://www.instagram.com/p/DQhcw9hEuQX/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" class="inline-block mt-2 px-4 py-2 bg-cyan-500 text-black rounded hover:bg-cyan-400 transition">See the shape here</a>
+      </div>
+      <div class="project-item web bg-gray-900 p-4 rounded shadow-md hover:shadow-cyan-400/50 transition">
+        <h2 class="text-xl font-semibold text-cyan-400 mb-2">UTS Web Design</h2>
+        <p class="text-gray-300 mb-2">Just my mid exam :D</p>
+        <img src="assets/images/uts-dw.png" alt="Uiiai Robo" class="w-full rounded mb-2 transition transform hover:scale-105 hover:shadow-cyan-400/50">
+        <a href="https://github.com/OngCapybara/UTS-Desain-Web" target="_blank" class="inline-block mt-2 px-4 py-2 bg-cyan-500 text-black rounded hover:bg-cyan-400 transition">See More</a>
+        <a href="https://uts-desain-web-xi.vercel.app/form-login.html" target="_blank" class="inline-block mt-2 px-4 py-2 bg-cyan-500 text-black rounded hover:bg-cyan-400 transition">See the shape here</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="text-center p-4 border-t-2 border-cyan-400 bg-gray-900">
+    <p>&copy; 2025 - OngCapybara</p>
+  </footer>
+
+  <!-- SCRIPT -->
+  <script src="src/script/script-project.js"></script>
+</body>
+</html>

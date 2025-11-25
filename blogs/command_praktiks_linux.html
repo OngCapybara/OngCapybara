@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tips Linux Command | OngCapybara</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../src/styles/styles.css" />
+</head>
+
+<body class="bg-black text-gray-200 font-sans leading-relaxed">
+  <!-- HEADER ARTIKEL -->
+  <header class="max-w-4xl mx-auto text-center p-8 border-b-2 border-cyan-400">
+    <h1 class="text-3xl font-bold text-cyan-400 mb-2">Tips & Cheat-sheet Linux Command</h1>
+    <p class="text-gray-400">Ditulis oleh <span class="text-cyan-300">OngCapybara</span> — 6 Okt 2025</p>
+  </header>
+
+  <!-- ISI ARTIKEL -->
+  <main class="max-w-4xl mx-auto p-6">
+    <!-- BREADCRUMB -->
+    <nav class="text-sm text-gray-400 mb-6">
+      <a href="../blog.html" class="hover:text-cyan-400">🏠 Blog</a> /
+      <span class="text-cyan-400">Tips Linux Command</span>
+    </nav>
+
+    <!-- CONTENT -->
+    <article class="prose prose-invert max-w-none space-y-6">
+      <p>
+        Ini kumpulan <b>tips dan snippet Linux command</b> yang sering dipakai — dari operasi dasar (shutdown, reboot), membuka aplikasi, sampai beberapa trik productivity
+        yang berguna untuk development dan administrasi. Semua contoh ditulis agar mudah dicopy-paste ke terminal atau dimasukkan ke `~/.bashrc` / `~/.zshrc`.
+      </p>
+
+      <h2 class="text-2xl font-bold text-cyan-400 mt-6">Dasar Cepat: Shutdown, Reboot, Suspend</h2>
+
+      <p class="text-gray-300">Perintah-perintah berikut umum dipakai dan biasanya membutuhkan <code>sudo</code> (kecuali user memiliki privilege khusus).</p>
+
+      <pre class="bg-gray-900 text-cyan-300 p-4 rounded-lg overflow-x-auto">
+# Matikan sekarang
+sudo shutdown -h now
+
+# Reboot cepat
+sudo reboot
+# atau dengan systemd
+sudo systemctl reboot
+
+# Suspend (sleep)
+systemctl suspend
+
+# Hibernate
+sudo systemctl hibernate
+
+# Batalkan scheduled shutdown
+sudo shutdown -c
+      </pre>
+
+      <h2 class="text-2xl font-bold text-cyan-400 mt-6">Buka Aplikasi / File dari Terminal</h2>
+      <p class="text-gray-300">Buka file/folder atau jalankan GUI app dari terminal dengan cara yang tidak mengunci terminal.</p>
+
+      <pre class="bg-gray-900 text-cyan-300 p-4 rounded-lg overflow-x-auto">
+# Buka file/folder dengan aplikasi default
+xdg-open file.pdf
+xdg-open .
+
+# Jalankan GUI di background supaya terminal kembali
+gnome-calculator &      # contoh
+code . &                # VSCode
+firefox 'https://google.com' &
+
+# Jalankan dan biarkan jalan setelah logout
+nohup some-gui-app > /dev/null 2>&1 &
+disown
+      </pre>
+
+      <h2 class="text-2xl font-bold text-cyan-400 mt-6">Navigasi & File Ops (Sering Dipakai)</h2>
+      <pre class="bg-gray-900 text-cyan-300 p-4 rounded-lg overflow-x-auto">
+# List human-readable
+ls -lah
+
+# Copy / move / rename
+cp source.txt dest.txt
+mv oldname newname
+
+# Hapus dengan konfirmasi
+rm -i file.txt
+
+# Buat direktori beserta parent
+mkdir -p path/to/folder
+      </pre>
+
+      <h2 class="text-2xl font-bold text-cyan-400 mt-6">Proses & Port — Cari & Kill</h2>
+      <p class="text-gray-300">Tracing proses yang pakai port atau menghabisi proses yang membandel.</p>
+
+      <pre class="bg-gray-900 text-cyan-300 p-4 rounded-lg overflow-x-auto">
+# Lihat proses yang pakai port 8080
+sudo ss -tulpn | grep :8080
+# atau
+sudo lsof -i :8080
+
+# Cari proses dan kill
+ps aux | grep myserver
+kill <PID>
+kill -9 <PID>   # paksa (hati-hati)
+
+# Monitor proses (lebih enak pakai htop)
+top
+htop
+      </pre>
+
+      <h2 class="text-2xl font-bold text-cyan-400 mt-6">Cari Teks & File</h2>
+      <pre class="bg-gray-900 text-cyan-300 p-4 rounded-lg overflow-x-auto">
+# Cari teks di file (rekursif)
+grep -Rin "needle" path/
+
+# Cari file berdasarkan nama
+find . -name "*.log"
+
+# Cari file lalu tampilkan baris yang cocok
+find . -name "*.conf" -exec grep -H "Listen" {} \;
+      </pre>
+
+      <h2 class="text-2xl font-bold text-cyan-400 mt-6">Clipboard & Edit Cepat</h2>
+      <pre class="bg-gray-900 text-cyan-300 p-4 rounded-lg overflow-x-auto">
+# Copy ke clipboard (butuh xclip / xsel)
+echo "hello" | xclip -selection clipboard
+cat file.txt | xclip -selection clipboard
+
+# Paste clipboard ke file
+xclip -o -selection clipboard > file.txt
+
+# Editor cepat
+nano file.txt
+      </pre>
+
+      <h2 class="text-2xl font-bold text-cyan-400 mt-6">Permission & Owner</h2>
+      <pre class="bg-gray-900 text-cyan-300 p-4 rounded-lg overflow-x-auto">
+# Ganti permission
+chmod 755 script.sh
+chmod u+x script.sh
+
+# Ganti owner
+sudo chown user:group file.txt
+      </pre>
+
+      <h2 class="text-2xl font-bold text-cyan-400 mt-6">Productivity: History, Aliases & Shortcuts</h2>
+      <p class="text-gray-300">Beberapa alias dan trik singkat yang hemat waktu — tambahkan ke <code>~/.bashrc</code> atau <code>~/.zshrc</code>.</p>
+
+      <pre class="bg-gray-900 text-cyan-300 p-4 rounded-lg overflow-x-auto">
+# Ulang perintah terakhir dengan sudo
+sudo !!
+
+# Jalankan perintah dari history
+history
+!123
+
+# Contoh alias (taruh di ~/.bashrc atau ~/.zshrc)
+alias ll='ls -lah'
+alias gs='git status'
+alias shutdownnow='sudo systemctl poweroff'
+alias serve='python3 -m http.server 8000'
+
+# Setelah edit, reload
+source ~/.bashrc
+      </pre>
+
+      <h2 class="text-2xl font-bold text-cyan-400 mt-6">Snippet Helper yang Berguna</h2>
+      <pre class="bg-gray-900 text-cyan-300 p-4 rounded-lg overflow-x-auto">
+# Buka VSCode di folder lalu background
+(code . & disown)
+
+# Simple HTTP server (share folder cepat)
+python3 -m http.server 8000
+
+# Restart service (systemd)
+sudo systemctl restart nginx
+sudo systemctl status nginx
+      </pre>
+
+      <h2 class="text-2xl font-bold text-cyan-400 mt-6">Tips Keamanan & Kebiasaan Baik</h2>
+      <ul class="list-disc list-inside text-gray-300">
+        <li>Jangan sembarangan pakai <code>sudo rm -rf</code> — cek path dulu.</li>
+        <li>Gunakan <code>-i</code> saat hapus file bila ragu: <code>rm -i file.txt</code>.</li>
+        <li>Untuk server production, hindari menjalankan GUI via SSH kecuali paham X forwarding / nohup.</li>
+        <li>Gunakan user DB dengan hak minimum pada production (least privilege).</li>
+      </ul>
+
+      <hr class="border-gray-700 my-8">
+
+      <p class="text-gray-400 text-sm">
+        🔖 Kategori: <span class="text-cyan-400">Tips / Linux</span> • 🕓 Est. baca: 4 menit
+      </p>
+
+      <div class="mt-8 flex gap-3">
+        <a href="../blog.html" class="inline-block px-4 py-2 bg-cyan-500 text-black rounded hover:bg-cyan-400 transition">← Kembali ke Blog</a>
+        <a href="#" class="inline-block px-4 py-2 border border-cyan-500 text-cyan-400 rounded hover:bg-cyan-900 transition">Download Cheat-sheet</a>
+      </div>
+
+      <blockquote class="border-l-4 border-cyan-400 pl-4 italic text-gray-400 mt-6">
+        Catatan: Perintah di atas cocok untuk desktop Linux modern (systemd). Selalu coba di lingkungan safe ketika bereksperimen.
+      </blockquote>
+    </article>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="text-center p-4 border-t-2 border-cyan-400 bg-gray-900 mt-8">
+    <p>&copy; 2025 - OngCapybara</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SQL Injection Dasar | OngCapybara</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../src/styles/styles.css" />
+</head>
+
+<body class="bg-black text-gray-200 font-sans leading-relaxed">
+  <!-- HEADER ARTIKEL -->
+  <header class="max-w-4xl mx-auto text-center p-8 border-b-2 border-cyan-400">
+    <h1 class="text-3xl font-bold text-cyan-400 mb-2">SQL Injection Dasar — Tutorial & Edukasi</h1>
+    <p class="text-gray-400">Ditulis oleh <span class="text-cyan-300">OngCapybara</span> — 6 Okt 2025</p>
+  </header>
+
+  <!-- ISI ARTIKEL -->
+  <main class="max-w-4xl mx-auto p-6">
+    <!-- BREADCRUMB -->
+    <nav class="text-sm text-gray-400 mb-6">
+      <a href="../blog.html" class="hover:text-cyan-400">🏠 Blog</a> /
+      <span class="text-cyan-400">Basic SQL Injection</span>
+    </nav>
+
+    <!-- CONTENT -->
+    <article class="prose prose-invert max-w-none space-y-6">
+      <p>
+        <strong>SQL Injection (SQLi)</strong> adalah salah satu celah keamanan web yang paling sering ditemui.
+        Di artikel ini kita akan bahas konsep dasar, contoh simulasi aman di lingkungan lokal, dan — yang paling penting — cara pencegahannya.
+        Fokusnya edukasi dan hardening, bukan eksploitasi untuk tujuan jahat.
+      </p>
+
+      <h2 class="text-2xl font-bold text-cyan-400 mt-6">Apa itu SQL Injection?</h2>
+      <p>
+        SQL Injection terjadi ketika aplikasi memasukkan data input pengguna langsung ke dalam query SQL tanpa memisahkan data dan perintah SQL.
+        Akibatnya, penyerang bisa menyisipkan fragmen SQL yang mengubah perilaku query.
+      </p>
+
+      <h2 class="text-2xl font-bold text-cyan-400 mt-6">Contoh Kasus Sederhana</h2>
+      <p>Misalkan backend login sederhana (pseudo-PHP):</p>
+
+      <pre class="bg-gray-900 text-cyan-300 p-4 rounded-lg overflow-x-auto">
+&lt;?php
+$username = $_POST['username'];
+$password = $_POST['password'];
+
+$query = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
+$result = mysqli_query($conn, $query);
+
+if (mysqli_num_rows($result) &gt; 0) {
+  echo "Login berhasil!";
+} else {
+  echo "Login gagal!";
+}
+?&gt;
+      </pre>
+
+      <p>
+        Jika input disisipkan begitu saja, payload seperti <code>' OR '1'='1</code> dapat membuat kondisi selalu benar.
+      </p>
+
+      <pre class="bg-gray-900 text-cyan-300 p-4 rounded-lg overflow-x-auto">
+-- Contoh payload di form:
+username: admin
+password: ' OR '1'='1
+
+-- Query menjadi:
+SELECT * FROM users WHERE username = 'admin' AND password = '' OR '1'='1';
+      </pre>
+
+      <p>
+        Karena <code>'1'='1'</code> selalu bernilai true, login akan berhasil tanpa mengetahui password asli.
+      </p>
+
+      <h2 class="text-2xl font-bold text-cyan-400 mt-6">Latihan Aman (Environment Lokal)</h2>
+      <p>Latihan hanya di mesin sendiri — jangan pernah menguji aplikasi orang lain tanpa izin.</p>
+
+      <h3 class="text-lg font-semibold text-cyan-300 mt-4">1. Persiapan</h3>
+      <ul class="list-disc list-inside text-gray-300">
+        <li>Install XAMPP / Laragon (PHP + MySQL) atau gunakan Docker untuk stack lokal.</li>
+        <li>Buat database & tabel sederhana:</li>
+      </ul>
+
+      <pre class="bg-gray-900 text-cyan-300 p-4 rounded-lg overflow-x-auto">
+CREATE TABLE users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(50),
+  password VARCHAR(50)
+);
+
+INSERT INTO users (username, password)
+VALUES ('admin', '12345'), ('capy', 'password');
+      </pre>
+
+      <h3 class="text-lg font-semibold text-cyan-300 mt-4">2. Coba Form Login</h3>
+      <p>
+        Buat file <code>login.php</code> dengan kode di bagian sebelumnya, jalankan di <code>http://localhost/login.php</code> lalu uji payload.
+        Kamu akan melihat bagaimana SQLi bekerja — di lingkungan terisolasi.
+      </p>
+
+      <h2 class="text-2xl font-bold text-cyan-400 mt-6">Cara Mencegah SQL Injection</h2>
+      <p>Intinya: <strong>pisahkan data dan perintah SQL</strong>. Jangan gabungkan input mentah ke query.</p>
+
+      <h3 class="text-lg font-semibold text-cyan-300 mt-4">1. Prepared Statements / Parameterized Queries</h3>
+      <p>Contoh aman di Python + SQLite (Flask):</p>
+
+      <pre class="bg-gray-900 text-cyan-300 p-4 rounded-lg overflow-x-auto">
+from flask import Flask, request
+import sqlite3
+
+app = Flask(__name__)
+
+@app.route('/login', methods=['POST'])
+def login():
+    user = request.form['username']
+    pw = request.form['password']
+
+    conn = sqlite3.connect('data.db')
+    cur = conn.cursor()
+    # Parameterized query -> aman terhadap SQLi
+    cur.execute("SELECT * FROM users WHERE username=? AND password=?", (user, pw))
+    result = cur.fetchone()
+
+    if result:
+        return "Login berhasil!"
+    else:
+        return "Login gagal!"
+      </pre>
+
+      <h3 class="text-lg font-semibold text-cyan-300 mt-4">2. Gunakan ORM</h3>
+      <p>
+        ORM (misal SQLAlchemy, Eloquent, Prisma) secara default memisahkan query dan data, mengurangi risiko SQLi.
+      </p>
+
+      <h3 class="text-lg font-semibold text-cyan-300 mt-4">3. Validasi & Sanitasi Input</h3>
+      <p>
+        Terapkan whitelist pada input (mis. hanya huruf/angka bila perlu), batasi panjang input, dan gunakan escaping jika perlu.
+      </p>
+
+      <h3 class="text-lg font-semibold text-cyan-300 mt-4">4. Principle of Least Privilege</h3>
+      <p>
+        Beri user database hanya hak yang diperlukan. Jangan jalankan aplikasi dengan user DB yang punya hak admin/root.
+      </p>
+
+      <h2 class="text-2xl font-bold text-cyan-400 mt-6">Praktik Tambahan</h2>
+      <ul class="list-disc list-inside text-gray-300 space-y-1">
+        <li>Jangan tampilkan error SQL mentah ke user—log saja di server.</li>
+        <li>Audit query & lakukan pentest internal dengan izin.</li>
+        <li>Gunakan WAF (Web Application Firewall) sebagai lapisan tambahan.</li>
+      </ul>
+
+      <hr class="border-gray-700 my-8">
+
+      <p class="text-gray-400 text-sm">
+        🔖 Kategori: <span class="text-cyan-400">CTF / Edukasi</span> • 🕓 Est. baca: 6 menit
+      </p>
+
+      <div class="mt-8 flex gap-3">
+        <a href="../blog.html" class="inline-block px-4 py-2 bg-cyan-500 text-black rounded hover:bg-cyan-400 transition">← Kembali ke Blog</a>
+        <a href="https://owasp.org/www-community/attacks/SQL_Injection" target="_blank" rel="noopener" class="inline-block px-4 py-2 border border-cyan-500 text-cyan-400 rounded hover:bg-cyan-900 transition">Referensi OWASP</a>
+      </div>
+
+      <blockquote class="border-l-4 border-cyan-400 pl-4 italic text-gray-400 mt-6">
+        Etika: Selalu uji di lingkungan yang kamu miliki atau yang punya izin. Ilmu ini untuk memperkuat sistem, bukan merusak.
+      </blockquote>
+
+    </article>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="text-center p-4 border-t-2 border-cyan-400 bg-gray-900 mt-8">
+    <p>&copy; 2025 - OngCapybara</p>
+  </footer>
+
+</body>
+</html>

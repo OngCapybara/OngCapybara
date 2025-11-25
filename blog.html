@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OngCapybara - Blog</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="src/styles/styles.css">
+</head>
+<body class="bg-black text-gray-200 font-sans">
+
+  <!-- NAVIGATION -->
+  <nav>
+    <a href="index.html" class="hover:text-cyan-400">About Me</a>
+    <a href="project.html" class="hover:text-cyan-400">Projects</a>
+    <a href="journey.html" class="hover:text-cyan-400">Journey</a>
+    <a href="blog.html" class="text-cyan-400 font-semibold">Blog</a>
+    <a href="contact.html" class="hover:text-cyan-400">Contact</a>
+  </nav>
+
+  <!-- HEADER -->
+  <header class="text-center p-8 border-b-2 border-cyan-400">
+    <h1 class="text-3xl font-bold">My Blog</h1>
+    <p class="text-cyan-400 mt-2">Explore my articles about cybersecurity, CTF, Robotics, and coding</p>
+  </header>
+
+  <!-- FILTER / SEARCH -->
+  <main class="max-w-5xl mx-auto p-6">
+    <div class="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
+      <!-- Category Buttons -->
+      <div class="flex flex-wrap gap-2" id="categoryButtons">
+        <button class="category-btn px-4 py-2 bg-cyan-500 text-black rounded hover:bg-cyan-400 transition" data-category="all">All</button>
+        <button class="category-btn px-4 py-2 bg-gray-800 text-cyan-300 rounded hover:bg-gray-700 transition" data-category="ctf">CTF</button>
+        <button class="category-btn px-4 py-2 bg-gray-800 text-cyan-300 rounded hover:bg-gray-700 transition" data-category="cyber">Cyber Security</button>
+        <button class="category-btn px-4 py-2 bg-gray-800 text-cyan-300 rounded hover:bg-gray-700 transition" data-category="journey">Journey</button>
+        <button class="category-btn px-4 py-2 bg-gray-800 text-cyan-300 rounded hover:bg-gray-700 transition" data-category="Robotics">Robotics</button>
+        <button class="category-btn px-4 py-2 bg-gray-800 text-cyan-300 rounded hover:bg-gray-700 transition" data-category="tips">Tips</button>
+      </div>
+
+      <!-- Search Box -->
+      <input type="text" id="searchBox" placeholder="Search articles..."
+             class="p-2 rounded bg-gray-800 text-gray-200 w-full sm:w-64">
+    </div>
+
+    <!-- BLOG GRID -->
+    <div id="blogs" class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <article class="project-item ctf bg-gray-900 p-6 rounded-xl border border-cyan-500 hover:shadow-cyan-400/40 hover:scale-[1.02] transition">
+        <div class="flex justify-between items-center mb-3">
+          <span class="text-sm text-cyan-400 font-semibold">CTF</span>
+          <span class="text-gray-500 text-sm">18 Nov 2025</span>
+        </div>
+        <h3 class="text-xl font-semibold text-cyan-300 mb-2">PicoCTF Writeup - Web Exploitation (Easy)</h3>
+        <p class="text-gray-400 text-sm mb-4">
+          Writeup all chall PicoCTF web exploitation (easy)
+        </p>
+        <a href="blogs/wu-PicoCTF-webExploit-easy.html" class="inline-block text-cyan-400 hover:text-cyan-300 font-medium">Read more →</a>
+      </article>
+      <article class="project-item ctf bg-gray-900 p-6 rounded-xl border border-cyan-500 hover:shadow-cyan-400/40 hover:scale-[1.02] transition">
+        <div class="flex justify-between items-center mb-3">
+          <span class="text-sm text-cyan-400 font-semibold">CTF</span>
+          <span class="text-gray-500 text-sm">18 Nov 2025</span>
+        </div>
+        <h3 class="text-xl font-semibold text-cyan-300 mb-2">PicoCTF Writeup - Cryptography (Easy)</h3>
+        <p class="text-gray-400 text-sm mb-4">
+          Writeup all chall PicoCTF cryptography (easy)
+        </p>
+        <a href="blogs/wu-picoCTF-kripto-easy.html" class="inline-block text-cyan-400 hover:text-cyan-300 font-medium">Read more →</a>
+      </article>
+      <article class="project-item journey bg-gray-900 p-6 rounded-xl border border-cyan-500 hover:shadow-cyan-400/40 hover:scale-[1.02] transition">
+        <div class="flex justify-between items-center mb-3">
+          <span class="text-sm text-cyan-400 font-semibold">Journey</span>
+          <span class="text-gray-500 text-sm">21 Okt 2025</span>
+        </div>
+        <h3 class="text-xl font-semibold text-cyan-300 mb-2">KRTI 2025 - Nasional!</h3>
+        <p class="text-gray-400 text-sm mb-4">
+          Kompetisi nasional!
+        </p>
+        <a href="blogs/krti-nasional.html" class="inline-block text-cyan-400 hover:text-cyan-300 font-medium">Read more →</a>
+      </article>
+      <article class="project-item journey bg-gray-900 p-6 rounded-xl border border-cyan-500 hover:shadow-cyan-400/40 hover:scale-[1.02] transition">
+        <div class="flex justify-between items-center mb-3">
+          <span class="text-sm text-cyan-400 font-semibold">Journey</span>
+          <span class="text-gray-500 text-sm">13 Okt 2025</span>
+        </div>
+        <h3 class="text-xl font-semibold text-cyan-300 mb-2">KRTI 2025 - Seleksi Wilayah</h3>
+        <p class="text-gray-400 text-sm mb-4">
+          Pemberhentian pertama, menuju ke seleksi nasional.
+        </p>
+        <a href="blogs/krti-wilayah.html" class="inline-block text-cyan-400 hover:text-cyan-300 font-medium">Read more →</a>
+      </article>
+      <article class="project-item tips bg-gray-900 p-6 rounded-xl border border-cyan-500 hover:shadow-cyan-400/40 hover:scale-[1.02] transition">
+        <div class="flex justify-between items-center mb-3">
+          <span class="text-sm text-cyan-400 font-semibold">Tips</span>
+          <span class="text-gray-500 text-sm">09 Okt 2025</span>
+        </div>
+        <h3 class="text-xl font-semibold text-cyan-300 mb-2">Practical Shortcut Windows For Everyday Use</h3>
+        <p class="text-gray-400 text-sm mb-4">
+          Several shortcut that simply activities in your windows.
+        </p>
+        <a href="blogs/win_shortcut_praktis.html" class="inline-block text-cyan-400 hover:text-cyan-300 font-medium">Read more →</a>
+      </article>
+      <article class="project-item journey bg-gray-900 p-6 rounded-xl border border-cyan-500 hover:shadow-cyan-400/40 hover:scale-[1.02] transition">
+        <div class="flex justify-between items-center mb-3">
+          <span class="text-sm text-cyan-400 font-semibold">Journey</span>
+          <span class="text-gray-500 text-sm">07 Okt 2025</span>
+        </div>
+        <h3 class="text-xl font-semibold text-cyan-300 mb-2">CTF Pesawaran 2025</h3>
+        <p class="text-gray-400 text-sm mb-4">
+          Perjalanan tanpa henti hingga mencapai puncak tertinggi.
+        </p>
+        <a href="blogs/cerita_1.html" class="inline-block text-cyan-400 hover:text-cyan-300 font-medium">Read more →</a>
+      </article>
+      <article class="project-item tips bg-gray-900 p-6 rounded-xl border border-cyan-500 hover:shadow-cyan-400/40 hover:scale-[1.02] transition">
+        <div class="flex justify-between items-center mb-3">
+          <span class="text-sm text-cyan-400 font-semibold">Tips</span>
+          <span class="text-gray-500 text-sm">06 Okt 2025</span>
+        </div>
+        <h3 class="text-xl font-semibold text-cyan-300 mb-2">Tips & Cheat-sheet Linux Command</h3>
+        <p class="text-gray-400 text-sm mb-4">
+          Tips seru menggunakan terminal.
+        </p>
+        <a href="blogs/command_praktiks_linux.html" class="inline-block text-cyan-400 hover:text-cyan-300 font-medium">Read more →</a>
+      </article>
+      <article class="project-item cyber bg-gray-900 p-6 rounded-xl border border-cyan-500 hover:shadow-cyan-400/40 hover:scale-[1.02] transition">
+        <div class="flex justify-between items-center mb-3">
+          <span class="text-sm text-cyan-400 font-semibold">Cyber Security</span>
+          <span class="text-gray-500 text-sm">06 Okt 2025</span>
+        </div>
+        <h3 class="text-xl font-semibold text-cyan-300 mb-2">Basic SQL Injection</h3>
+        <p class="text-gray-400 text-sm mb-4">
+          Edukasi tentang dasar dari query SQL Injection
+        </p>
+        <a href="blogs/sql_inject_dasar.html" class="inline-block text-cyan-400 hover:text-cyan-300 font-medium">Read more →</a>
+      </article>
+      <article class="project-item tips bg-gray-900 p-6 rounded-xl border border-cyan-500 hover:shadow-cyan-400/40 hover:scale-[1.02] transition">
+        <div class="flex justify-between items-center mb-3">
+          <span class="text-sm text-cyan-400 font-semibold">Tips</span>
+          <span class="text-gray-500 text-sm">05 Okt 2025</span>
+        </div>
+        <h3 class="text-xl font-semibold text-cyan-300 mb-2">Basic Command of Linux</h3>
+        <p class="text-gray-400 text-sm mb-4">
+          Basic of linux terminal
+        </p>
+        <a href="blogs/command_dasar_linux.html" class="inline-block text-cyan-400 hover:text-cyan-300 font-medium">Read more →</a>
+      </article>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 - OngCapybara</p>
+  </footer>
+
+  <!-- SCRIPT -->
+  <script src="src/script/script-blog.js"></script>
+</body>
+</html>

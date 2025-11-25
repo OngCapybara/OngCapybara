@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PicoCTF Writeup - Cryptography (Easy) | OngCapybara</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../src/styles/styles.css" />
+</head>
+
+<body class="bg-black text-gray-200 font-sans leading-relaxed">
+
+  <!-- HEADER ARTICLE -->
+  <header class="max-w-4xl mx-auto text-center p-8 border-b-2 border-cyan-400">
+    <h1 class="text-3xl font-bold text-cyan-400 mb-2">PicoCTF Writeup - Cryptography (Easy)</h1>
+    <p class="text-gray-400">Written by <span class="text-cyan-300">OngCapybara</span> — 18 Nov 2025</p>
+  </header>
+
+  <!-- ARTICLE BODY -->
+  <main class="max-w-4xl mx-auto p-6">
+    
+    <!-- BREADCRUMB -->
+    <nav class="text-sm text-gray-400 mb-6">
+      <a href="../blog.html" class="hover:text-cyan-400">🏠 Blog</a> /
+      <span class="text-cyan-400">PicoCTF - Cryptography (Easy)</span>
+    </nav>
+
+    <!-- CONTENT -->
+    <article class="prose prose-invert max-w-none space-y-6">
+
+      <p>
+        In this short writeup, I want to explain some basic concepts used to solve 
+        <b>easy-level cryptography</b> challenges from PicoCTF.  
+        This article only covers the fundamentals and the common patterns you will encounter.  
+        If you want to read the full detailed writeup, you can download the PDF at the end of this page.
+      </p><br>
+
+      <h2 class="text-2xl font-bold text-cyan-400 mt-6">🔐 What Usually Appears in Easy Crypto Challenges?</h2>
+      <p class="text-gray-300">
+        Easy-level cryptography problems in PicoCTF are designed to introduce players to basic classical ciphers 
+        and standard encoding schemes. Below are the most common types of challenges you may encounter:
+      </p>
+
+      <ul class="list-disc pl-6 text-gray-300">
+        <li><b>Caesar Cipher</b> – simple alphabet shifting.</li>
+        <li><b>Vigenère Cipher</b> – key-based repeating cipher.</li>
+        <li><b>Base Encodings</b> – Base32, Base64, Base85, Base58.</li>
+        <li><b>Substitution Cipher</b> – each letter replaced by another letter.</li>
+        <li><b>Binary → ASCII</b> – converting binary representation to readable text.</li>
+      </ul>
+
+      <p class="text-gray-300">
+        Most of these challenges are not about heavy mathematics — they are mostly about  
+        recognizing the <b>pattern</b> behind the encrypted text.
+      </p><br>
+
+      <h2 class="text-2xl font-bold text-cyan-400 mt-6">🧠 Common Patterns You Should Recognize</h2>
+      <p class="text-gray-300">
+        Here are some typical clues you will find in easy cryptography problems:
+      </p>
+
+      <div class="bg-gray-900 p-4 rounded-lg space-y-3 text-gray-300">
+        <p>🔎 <b>The text seems shifted by 13 characters</b> → likely ROT13 or Caesar Cipher.</p>
+        <p>🔎 <b>The text ends with "="</b> → almost certainly Base64.</p>
+        <p>🔎 <b>The text looks random but has repeating patterns</b> → Vigenère Cipher.</p>
+      </div>
+
+      <p class="text-gray-300">
+        Based on experience, around <b>80% of easy crypto problems</b> can be solved just by 
+        identifying these basic hints.
+      </p><br>
+
+      <h2 class="text-2xl font-bold text-cyan-400 mt-6">📄 Download Full Writeup (PDF)</h2>
+      <p class="text-gray-300">
+        For a complete step-by-step explanation, Python scripts, recommended tools,  
+        and breakdowns for each challenge, you can download the full writeup below:
+      </p>
+
+      <!-- PDF LINK -->
+      <a href="../assets/writeup/WU-PicoCTF-Cryptography-Easy.pdf" 
+         download 
+         class="inline-block px-4 py-2 bg-cyan-500 text-black rounded hover:bg-cyan-400 transition mt-4">
+        📥 Download Full Writeup (PDF)
+      </a>
+
+      <br><br>
+
+      <hr class="border-gray-700 my-8">
+      <p class="text-gray-400 text-sm">
+        🔖 Category: <span class="text-cyan-400">CTF / Cryptography</span> • 🕓 Est. read: 2 minutes
+      </p>
+
+      <div class="mt-8">
+        <a href="../blog.html" class="inline-block px-4 py-2 bg-cyan-500 text-black rounded hover:bg-cyan-400 transition">
+          ← Back to Blog
+        </a>
+      </div>
+
+      <blockquote class="border-l-4 border-cyan-400 pl-4 italic text-gray-400 mt-6">
+        Note: A cipher is only as strong as the pattern it hides.
+      </blockquote>
+
+    </article>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="text-center p-4 border-t-2 border-cyan-400 bg-gray-900 mt-8">
+    <p>&copy; 2025 - OngCapybara</p>
+  </footer>
+
+</body>
+</html>
